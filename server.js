@@ -10,7 +10,7 @@ var http = require('http')
 
 var io = require('socket.io').listen(server)
 var output = new midi.output()
-output.openVirtualPort('node-midi virtual port')
+output.openVirtualPort('IO MIDI INSTRUMENT')
 
 var port = Number(process.env.PORT) || 9998
 

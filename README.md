@@ -9,14 +9,92 @@ It is a Socket.io server that can send MIDI events to DAWs (such as GarageBand).
 
 
 
-Brief Usage
------------
+Prerequisite
+------------
 
-Prerequisites: Node.js.
+You should have installed Node.js and know how to use it.
 
-1. Clone this project.
-2. `npm install`.
-3. Point your device to server.
+To create your own instrument,
+you should know about HTML5, JavaScript, and Socket.io.
+
+
+
+Usage
+-----
+
+### Clone this repository and `cd` into it.
+
+![Imgur](http://i.imgur.com/YXTpqbB.png)
+
+
+### Install the dependencies using `npm install`.
+
+![Imgur](http://i.imgur.com/l3eW4zn.png)
+
+
+### Start the server using `node server.js`.
+
+![Imgur](http://i.imgur.com/MJm6z5S.png)
+
+
+### You should see a new MIDI input device in your DAW.
+
+![Imgur](http://i.imgur.com/8JrYK3J.png)
+
+
+### Point your browser to the server and pick an instrument.
+
+![Imgur](http://i.imgur.com/kLLG3At.png)
+
+
+
+
+
+The Instruments
+---------------
+
+Here are the instruments that comes with IO♪MIDI♪INSTRUMENT.
+
+You can fork this repository and add more instruments to contribute to this project!
+
+
+### Drums
+
+Right now, it only works on touch devices.
+
+16-button drumpad.
+Has buttons for Kick, Snare, Rimshot, Toms, Rides and Crashes.
+
+Pressing in the center of the button means hitting louder.
+
+![Imgur](http://i.imgur.com/TmcZK7e.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
