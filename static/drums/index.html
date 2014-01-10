@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Drums — IO♪MIDI♪INSTRUMENT</title>
+<style>
+body { background:#000;}
+.pad { background: #555; position: absolute; width: 25%; height: 25%; border: 5px solid #000; -webkit-box-sizing: border-box; }
+[sample^=cym] { background: #a22 }
+[sample^=cym3] { background: #900 }
+[sample^=ride] { background: #838 }
+[sample^=kick] { background: #666 }
+[sample^=snare] { background: #951 }
+[sample^=tom1] { background: #751 }
+[sample^=tom2] { background: #651 }
+[sample^=tom3] { background: #551 }
+[sample^=hat] { background: #559 }
+.pad[data-active="1"] { background: #fff; }
+.pad div {
+  position: absolute;
+  top: 33%; right: 33%; bottom: 33%; left: 33%;
+  border: 3px solid rgba(255,255,255,0.3);
+}
+</style>
+<body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+var socket = io.connect('/');
+document.ontouchstart = function() { return false; }
+</script>
+
+<script>
+
+var spec = [
+    'cym2', 'ride2', 'cym3', 'cym1',
+    'tom2', 'tom1', 'tom3', 'ride1',
+    'snare1', 'snare2', 'hat1', 'hat2',
+    'kick', 'kick', 'rim', 'kick'
+  ]
+
+var map = {
+  kick: 36, rim: 36+1,
+  snare1: 38, snare2: 40,
+  hat1: 42, hat2: 46,
+  tom2: 48, tom1: 45, tom3: 41,
+  ride1: 59, ride2: 53,
+  cym3: 48+1, cym1: 48+9, cym2: 48+4
+}
+
+window.onload = function() {
+  var junk = 'junk'
+  for (; junk.length < 4096; junk += junk);
+  function trigger(name, velocity) {
+    var note = map[name]
+    if (!note) return
+    socket.emit('midi', 1, note, Math.round(velocity * 127))
+    socket.emit('midi', 1, note, 0)
+  }
+  function pad(index, row, column) {
+    var div = document.createElement('div')
+    div.className='pad'
+    div.style.top = (25 * row) + '%'
+    div.style.left = (25 * column) + '%'
+    div.innerHTML = index
+    div.setAttribute('sample', spec[index])
+    document.body.appendChild(div)
+    div.ontouchstart = function(e) {
+      var elx = div.offsetLeft
+        , ely = div.offsetTop
+        , w = div.offsetWidth
+        , h = div.offsetHeight
+        , volume = 0
+      ;[].forEach.call(e.changedTouches, function(touch) {
+        if (elx <= touch.pageX && touch.pageX < elx + w) {
+          if (ely <= touch.pageY && touch.pageY < ely + h) {
+            var x = (touch.pageX - elx) / w
+            var y = (touch.pageY - ely) / h
+            var vol = 1 - 2 * (Math.pow(x - 0.5, 2) + Math.pow(y - 0.5, 2))
+            if (vol > volume) volume = vol
+          }
+        }
+      })
+      if (spec[index] != '' && volume > 0) {
+        trigger(spec[index], volume)
+        //socket.emit('junk', junk)
+        div.setAttribute('data-active', '1')
+        setTimeout(function() {
+          div.setAttribute('data-active', '0')
+        }, 1000/20)
+      }
+      return false
+    }
+    div.innerHTML = spec[index]
+    div.appendChild(document.createElement('div'))
+  }
+  for (var i = 0; i < 16; i ++) pad(i, Math.floor(i / 4), i % 4)
+  var kmap = {
+    'T': 'snare1',
+    'N': 'snare2',
+    'S': 'tom1',
+    'E': 'tom1',
+    'I': 'tom2',
+    'R': 'tom3',
+    'P': 'hat1',
+    'L': 'hat1',
+    'F': 'hat2',
+    'U': 'hat2',
+    'W': 'cym1',
+    'Y': 'cym2',
+    'J': 'ride1',
+    '7': 'cym1',
+    '8': 'cym2',
+    '9': 'cym3',
+  }
+  window.onkeydown = function(e) {
+    for (var i in kmap) {
+      if (i.charCodeAt(0) == e.which) {
+        socket.emit('trigger', kmap[i], 1)
+      }
+    }
+  }
+}
+
+
+</script>
+

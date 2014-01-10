@@ -1,0 +1,26 @@
+{
+  "name": "io_midi_instrument",
+  "version": "0.0.0",
+  "description": "Musical instruments for hackers.",
+  "main": "server.js",
+  "dependencies": {
+    "midi": "~0.7.0",
+    "socket.io": "~0.9.16",
+    "connect": "~2.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dtinth/IO-MIDI-INSTRUMENT.git"
+  },
+  "keywords": [
+    "MIDI"
+  ],
+  "author": "Thai Pangsakulyanont <org.yi.dttvb@gmail.com>",
+  "license": "GPLv3",
+  "readmeFilename": "README.md"
+}
