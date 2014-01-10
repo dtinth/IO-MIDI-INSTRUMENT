@@ -9,6 +9,15 @@ It is a Socket.io server that can send MIDI events to DAWs (such as GarageBand).
 
 
 
+What can I do with it?
+----------------------
+
+### Video Demos
+
+* [Drums Cover](http://www.youtube.com/watch?v=7rN248b97RM)
+
+
+
 Prerequisite
 ------------
 
