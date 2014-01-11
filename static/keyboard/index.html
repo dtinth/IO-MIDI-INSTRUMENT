@@ -6,13 +6,20 @@
 <style>
 body { background: #353433; margin: 0; padding: 0; color: #e9e8e7;
   font: 16px Helvetica, sans-serif;}
-#head { background: #090807; line-height: 32px; height: 32px; }
+#head, #foot { background: #090807; line-height: 40px; height: 40px; }
 #head .text { float: left; margin-left: 8px; }
 #head .button { float: left; margin-left: 4px; width: 1.75em; text-align: center;
-line-height: 24px; margin-top: 4px; background: #252423; border-radius: 8px; }
-#main { position: absolute; top: 40px; right: 8px; bottom: 8px; left: 8px; }
+  line-height: 24px; margin-top: 4px; background: #252423; border-radius: 8px; }
+#head .button[data-active="1"] { background: #8b8685 !important; }
+#foot { position: absolute; bottom: 0; left: 0; right: 0; }
+#foot .button {
+  float: left; width: 3em; text-align: center;
+  border-right: 1px solid #454443;}
+#main { position: absolute; top: 48px; right: 8px; bottom: 48px; left: 8px; }
 
-.row { position: absolute; left: 3%; right: 3%; }
+.row { position: absolute; left: 1%; right: 1%; }
+.white, .black {
+  -webkit-transform: translate3d(0,0,0); }
 .white { position: absolute; background: #8b8685; top: 0; bottom: 0;
   box-shadow: inset -3px -1px 10px -2px black,
     inset 3px -1px 10px -2px #e9e8e7; }
@@ -22,16 +29,18 @@ line-height: 24px; margin-top: 4px; background: #252423; border-radius: 8px; }
   border-radius: 0 0 25px 25px;
   z-index: 1;
   box-shadow: inset -3px -1px 10px -2px black; }
-#debug { position: absolute; bottom: 0; right: 0; }
+.white[data-pressed="1"],
+.black[data-pressed="1"] {
+  background: #ffb !important; }
+#debug { position: absolute; bottom: 48px; right: 0; }
 </style>
 <meta name=viewport content="width=768">
 </head>
 <body>
 
-<div id="head">
-</div>
-<div id="main">
-</div>
+<div id="head"></div>
+<div id="foot"></div>
+<div id="main"></div>
 <div id="debug"></div>
 
 <script src="/socket.io/socket.io.js"></script>
