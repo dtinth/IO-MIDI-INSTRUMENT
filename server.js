@@ -18,8 +18,21 @@ server.listen(port)
 console.log("Listening on port", port)
 
 io.sockets.on('connection', function(socket) {
+  socket.on('raw_midi', function() {
+    var args = Array.prototype.slice.call(arguments)
+    console.log('raw_midi', args)
+    output.sendMessage(args)
+  })
   socket.on('midi', function(channel, note, volume) {
+    output.sendMessage([(volume == 0 ? 128 : 144) + channel, note, volume])
+  })
+  socket.on('note_on', function(channel, note, volume) {
+    console.log('note_on', channel, note, volume)
     output.sendMessage([144 + channel, note, volume])
+  })
+  socket.on('note_off', function(channel, note, volume) {
+    console.log('note_off', channel, note, volume)
+    output.sendMessage([128 + channel, note, volume])
   })
 })
 

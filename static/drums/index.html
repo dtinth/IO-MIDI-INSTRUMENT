@@ -47,8 +47,10 @@ var map = {
 }
 
 window.onload = function() {
-  var junk = 'junk'
-  for (; junk.length < 4096; junk += junk);
+  setTimeout(function send() {
+    socket.emit('junk', 'junk')
+    setTimeout(send, 200 + Math.random() * 1800)
+  }, 1000)
   function trigger(name, velocity) {
     var note = map[name]
     if (!note) return
