@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body { background: #353433; margin: 0; padding: 0; color: #e9e8e7;
+  font: 16px Helvetica, sans-serif;}
+#head { background: #090807; line-height: 32px; height: 32px; }
+#head .text { float: left; margin-left: 8px; }
+#head .button { float: left; margin-left: 4px; width: 1.75em; text-align: center;
+line-height: 24px; margin-top: 4px; background: #252423; border-radius: 8px; }
+#main { position: absolute; top: 40px; right: 8px; bottom: 8px; left: 8px; }
+
+.row { position: absolute; left: 3%; right: 3%; }
+.white { position: absolute; background: #8b8685; top: 0; bottom: 0;
+  box-shadow: inset -3px -1px 10px -2px black,
+    inset 3px -1px 10px -2px #e9e8e7; }
+.black { position: absolute; background: #252423; top: 0;
+  width: 50px; height: 40%;
+  margin-left: -25px;
+  border-radius: 0 0 25px 25px;
+  z-index: 1;
+  box-shadow: inset -3px -1px 10px -2px black; }
+#debug { position: absolute; bottom: 0; right: 0; }
+</style>
+<meta name=viewport content="width=768">
+</head>
+<body>
+
+<div id="head">
+</div>
+<div id="main">
+</div>
+<div id="debug"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="keyboard.js"></script>
+
+</body>
+</html>
