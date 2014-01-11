@@ -70,6 +70,7 @@ You can fork this repository and add more instruments to contribute to this proj
 ### Drums
 
 Right now, it only works on touch devices.
+Recommended: iPad on Portrait orientation.
 
 16-button drumpad.
 Has buttons for Kick, Snare, Rimshot, Toms, Rides and Crashes.
@@ -80,6 +81,14 @@ Pressing in the center of the button means hitting louder.
 
 
 
+### Keyboard
+
+Right now, it only works on touch devices.
+Recommended: iPad on Landscape orientation.
+
+3-octave keyboard.
+
+![Imgur](http://i.imgur.com/yMDFKhW.png)
 
 
 
