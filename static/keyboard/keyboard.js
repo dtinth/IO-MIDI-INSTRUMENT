@@ -137,7 +137,7 @@ function percent(value) {
  */
 var State = {
       notes: { },
-      octave: 2,
+      octave: 3,
       transpose: 0,
       watch: {
         key: function(key) {
