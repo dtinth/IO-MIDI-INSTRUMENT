@@ -1,4 +1,3 @@
-
 IO♪MIDI♪INSTRUMENT
 ==================
 
@@ -63,30 +62,18 @@ The Instruments
 ---------------
 
 Here are the instruments that comes with IO♪MIDI♪INSTRUMENT.
+Click on the name of the instrument to go to the corresponding page of that instrument.
 
 You can fork this repository and add more instruments to contribute to this project!
 
 
-### Drums
-
-Right now, it only works on touch devices.
-Recommended: iPad on Portrait orientation.
-
-16-button drumpad.
-Has buttons for Kick, Snare, Rimshot, Toms, Rides and Crashes.
-
-Pressing in the center of the button means hitting louder.
+### [Drums](static/drums/)
 
 ![Imgur](http://i.imgur.com/TmcZK7e.png)
 
 
 
-### Keyboard
-
-Right now, it only works on touch devices.
-Recommended: iPad on Landscape orientation.
-
-3-octave keyboard.
+### [Keyboard](static/keyboard/)
 
 ![Imgur](http://i.imgur.com/yMDFKhW.png)
 
