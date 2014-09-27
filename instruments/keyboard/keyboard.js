@@ -1,13 +1,4 @@
 
-/*global io */
-var socket = io.connect('/');
-
-socket.emit('raw_midi', 176, 127, 0)
-setTimeout(function send() {
-  socket.emit('junk', 'junk')
-  setTimeout(send, 200 + Math.random() * 300)
-}, 1000)
-
 /**
  * UI Binding
  */
@@ -309,12 +300,12 @@ function updateTouches(touches) {
 function updateMidi(notes) {
   forOwn(State.notes, function(note) {
     if (!notes[note]) {
-      socket.emit('note_off', 0, +note, 127)
+      midi.noteOff(1, +note, 127)
     }
   })
   forOwn(notes, function(note) {
     if (!State.notes[note]) {
-      socket.emit('note_on', 0, +note, 127)
+      midi.noteOn(1, +note, 127)
     }
   })
   State.notes = notes
