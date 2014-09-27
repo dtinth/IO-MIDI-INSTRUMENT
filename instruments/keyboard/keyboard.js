@@ -68,14 +68,10 @@ function toolbar() {
     button(i + '', setOctave(i), State.watch.octave(i))
   }
 
-  foot('2', 'addition', 2)
-  foot('m', 'addition', 3)
-  foot('M', 'addition', 4)
-  foot('4', 'addition', 5)
-  foot('5', 'addition', 7)
-  foot('6', 'addition', 9)
-  foot('7', 'addition', 10)
-  foot('7M', 'addition', 11)
+  foot('0x80', 'cc', 0x80)
+  foot('0x81', 'cc', 0x81)
+  foot('0x82', 'cc', 0x82)
+  foot('0x83', 'cc', 0x83)
 
   function setTranspose(transpose) {
     return function() {
@@ -176,7 +172,7 @@ function keyboard() {
   function row(octave) {
 
     var el = C('row')
-    assign(el.style, {
+    _.assign(el.style, {
       top:    percent(octave / 3 + 0.02),
       bottom: percent((2 - octave) / 3 + 0.02)
     })
@@ -196,7 +192,7 @@ function keyboard() {
 
     function make(key, index) {
       var noteEl = Note('white', key)
-      assign(noteEl.style, {
+      _.assign(noteEl.style, {
         left:   percent(index / white.length),
         right:  percent((white.length - 1 - index) / white.length)
       })
@@ -208,7 +204,7 @@ function keyboard() {
     
     function makeBlack(key, index) {
       var noteEl = Note('black', key)
-      assign(noteEl.style, {
+      _.assign(noteEl.style, {
         left:   percent((index + 1) / white.length)
       })
       el.appendChild(noteEl)
@@ -224,20 +220,6 @@ function forOwn(src, fn) {
       if (fn.call(src, i, src[i]) === false) return false
     }
   }
-}
-
-function keys(object) {
-  var out = [ ]
-  forOwn(object, function(key) {
-    out.push(key)
-  })
-  return out
-}
-
-function assign(dest, src) {
-  forOwn(src, function(i) {
-    dest[i] = src[i]
-  })
 }
 
 window.onload = function() {
@@ -272,7 +254,7 @@ function updateTouches(touches) {
     }
   }
 
-  var originalNotes = keys(notes).map(function(x) { return +x })
+  var originalNotes = _.keys(notes).map(function(x) { return +x })
 
   try {
     additions.forEach(function(fn) {
