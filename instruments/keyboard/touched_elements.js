@@ -1,0 +1,2 @@
+
+var touchedElements = touches.log()
