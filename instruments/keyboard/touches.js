@@ -7,10 +7,13 @@ var touches = (function() {
   document.addEventListener('touchmove', check)
   document.addEventListener('touchend', check)
 
-  return bus
+  return bus.toProperty([])
 
   function check(e) {
     bus.push(e.touches)
+    e.preventDefault()
+    e.stopPropagation()
   }
 
 })()
+

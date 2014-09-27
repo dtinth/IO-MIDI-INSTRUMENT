@@ -6,10 +6,15 @@ body { background: #353433; margin: 0; padding: 0; color: #e9e8e7;
 #head .button { float: left; margin-left: 4px; width: 1.75em; text-align: center;
   line-height: 24px; margin-top: 4px; background: #252423; border-radius: 8px; }
 #head .button[data-active="1"] { background: #8b8685 !important; }
-#foot { position: fixed; bottom: 0; left: 0; right: 0; }
+
+#foot { position: fixed; bottom: 0; left: 0; right: 0;
+  text-align: center; }
 #foot .button {
-  float: left; width: 4em; text-align: center;
-  border-right: 1px solid #454443;}
+  display: inline-block; width: 5em; text-align: center;
+  border-right: 1px solid #454443; }
+#foot .button:first-child {
+  border-left: 1px solid #454443; }
+#foot .button[data-active="1"] { background: #8b8685 !important; }
 #main { position: absolute; top: 48px; right: 8px; bottom: 48px; left: 8px; }
 
 .row { position: absolute; left: 1%; right: 1%; }
