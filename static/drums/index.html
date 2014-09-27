@@ -49,7 +49,7 @@ var map = {
 window.onload = function() {
   setTimeout(function send() {
     socket.emit('junk', 'junk')
-    setTimeout(send, 200 + Math.random() * 1800)
+    setTimeout(send, 200 + Math.random() * 300)
   }, 1000)
   function trigger(name, velocity) {
     var note = map[name]

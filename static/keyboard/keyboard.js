@@ -5,7 +5,7 @@ var socket = io.connect('/');
 socket.emit('raw_midi', 176, 127, 0)
 setTimeout(function send() {
   socket.emit('junk', 'junk')
-  setTimeout(send, 200 + Math.random() * 1800)
+  setTimeout(send, 200 + Math.random() * 300)
 }, 1000)
 
 /**
