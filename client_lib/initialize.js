@@ -8,9 +8,18 @@ midi.onmessage = (function() {
   var queue = null
 
   midi.batch = function(callback) {
-    throw new Error("Nested batch!")
-    queue = []
+    midi.batch.begin()
     callback()
+    midi.batch.end()
+  }
+
+  midi.batch.start = function() {
+    if (queue) throw new Error("Nested batch!")
+    queue = []
+  }
+
+  midi.batch.end = function() {
+    if (!queue) throw new Error("No batch started!")
     socket.emit('midi', queue)
     queue = null
   }

@@ -23,7 +23,7 @@ $(function() {
     var el = C('row')
     _.assign(el.style, {
       top:    percent(octave / 3 + 0.02),
-      bottom: percent((2 - octave) / 3 + 0.02)
+      height: percent(1 / 3 - 0.05)
     })
 
     var white = [-3, -1, 0, 2, 4, 5, 7, 9, 11, 12, 14, 16]

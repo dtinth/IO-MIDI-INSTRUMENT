@@ -7,6 +7,7 @@ output.openVirtualPort('IO MIDI INSTRUMENT')
 
 server.on('midi', function(message) {
   output.sendMessage(message)
+  console.log('[midi message]', message)
 })
 
 var port = Number(process.env.PORT) || 9998

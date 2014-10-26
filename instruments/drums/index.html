@@ -25,11 +25,6 @@ body { background:#000;}
 <script src="/lib/index.js"></script>
 
 <script>
-var socket = io.connect('/');
-document.ontouchstart = function() { return false; }
-</script>
-
-<script>
 
 var spec = [
     'cym2', 'ride2', 'cym3', 'cym1',
@@ -48,15 +43,12 @@ var map = {
 }
 
 window.onload = function() {
-  setTimeout(function send() {
-    socket.emit('junk', 'junk')
-    setTimeout(send, 200 + Math.random() * 300)
-  }, 1000)
   function trigger(name, velocity) {
     var note = map[name]
     if (!note) return
-    socket.emit('midi', 1, note, Math.round(velocity * 127))
-    socket.emit('midi', 1, note, 0)
+    var vel = velocity * 127
+    midi.noteOn(1, note, vel)
+    midi.noteOff(1, note, vel)
   }
   function pad(index, row, column) {
     var div = document.createElement('div')
@@ -84,7 +76,6 @@ window.onload = function() {
       })
       if (spec[index] != '' && volume > 0) {
         trigger(spec[index], volume)
-        //socket.emit('junk', junk)
         div.setAttribute('data-active', '1')
         setTimeout(function() {
           div.setAttribute('data-active', '0')
@@ -96,31 +87,6 @@ window.onload = function() {
     div.appendChild(document.createElement('div'))
   }
   for (var i = 0; i < 16; i ++) pad(i, Math.floor(i / 4), i % 4)
-  var kmap = {
-    'T': 'snare1',
-    'N': 'snare2',
-    'S': 'tom1',
-    'E': 'tom1',
-    'I': 'tom2',
-    'R': 'tom3',
-    'P': 'hat1',
-    'L': 'hat1',
-    'F': 'hat2',
-    'U': 'hat2',
-    'W': 'cym1',
-    'Y': 'cym2',
-    'J': 'ride1',
-    '7': 'cym1',
-    '8': 'cym2',
-    '9': 'cym3',
-  }
-  window.onkeydown = function(e) {
-    for (var i in kmap) {
-      if (i.charCodeAt(0) == e.which) {
-        socket.emit('trigger', kmap[i], 1)
-      }
-    }
-  }
 }
 
 

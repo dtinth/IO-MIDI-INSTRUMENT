@@ -10,7 +10,9 @@ var touches = (function() {
   return bus.toProperty([])
 
   function check(e) {
+    midi.batch.start()
     bus.push(e.touches)
+    midi.batch.end()
     e.preventDefault()
     e.stopPropagation()
   }

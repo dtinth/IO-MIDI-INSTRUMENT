@@ -13,10 +13,10 @@ $(function toolbar() {
     button(i + '', setOctave(i), eq(Options.octave, i))
   }
 
-  foot('CC80', 'cc').onValue(cc(80))
-  foot('CC81', 'cc').onValue(cc(81))
-  foot('CC82', 'cc').onValue(cc(82))
-  foot('CC83', 'cc').onValue(cc(83))
+  foot('CC80', 'cc').changes().onValue(cc(80))
+  foot('CC81', 'cc').changes().onValue(cc(81))
+  foot('CC82', 'cc').changes().onValue(cc(82))
+  foot('CC83', 'cc').changes().onValue(cc(83))
 
   function eq(stream, value) {
     return stream.map(function(streamValue) {
