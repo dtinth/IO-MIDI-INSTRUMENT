@@ -1,0 +1,49 @@
+
+body {
+  background: black;
+}
+
+#main {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+}
+
+@mixin make-grid($rows, $columns) {
+  box-sizing: border-box;
+  width: percentage(1 / $columns);
+  height: percentage(1 / $rows);
+  @for $i from 1 through $rows {
+    &.row-#{$i} {
+      bottom: #{percentage(($i - 1) / $rows)};
+    }
+  }
+  @for $j from 1 through $columns {
+    &.column-#{$j} {
+      left: #{percentage(($j - 1) / $columns)};
+    }
+  }
+}
+
+.button {
+  background: #353433;
+  border: 5px solid black;
+  position: absolute;
+  @include make-grid(4, 4);
+  &.is-active {
+    border-color: #e9e8e7;
+  }
+}
+
+.button--text {
+  font: bold 15px Verdana, sans-serif;
+  text-align: center;
+  color: #e9e8e7;
+  position: absolute;
+  top: 50%; right: 0; left: 0;
+  transform: translateY(-50%);
+}
+
+
