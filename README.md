@@ -67,13 +67,13 @@ Click on the name of the instrument to go to the corresponding page of that inst
 You can fork this repository and add more instruments to contribute to this project!
 
 
-### [Drums](static/drums/)
+### [Drum Pad](instruments/pad/)
 
-![Imgur](http://i.imgur.com/TmcZK7e.png)
+![Imgur](http://i.imgur.com/0t1uqHe.png)
 
 
 
-### [Keyboard](static/keyboard/)
+### [Keyboard](instruments/keyboard/)
 
 ![Imgur](http://i.imgur.com/yMDFKhW.png)
 
